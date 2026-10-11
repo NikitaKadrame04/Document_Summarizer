@@ -47,6 +47,17 @@ st.markdown(
     <style>
       :root { --smartdoc-indigo: #4f46e5; --smartdoc-ink: #172033; }
       .stApp, [data-testid="stAppViewContainer"] { background: #fbfbfe !important; color: var(--smartdoc-ink) !important; }
+      section[data-testid="stSidebar"],
+      section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+        background: #f1f0ff !important; border-right: 1px solid #e1defa;
+      }
+      section[data-testid="stSidebar"] h1,
+      section[data-testid="stSidebar"] h2,
+      section[data-testid="stSidebar"] h3 { color: #312e81 !important; }
+      section[data-testid="stSidebar"] p,
+      section[data-testid="stSidebar"] label,
+      section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+      section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] { color: #37365f !important; }
       .block-container { max-width: 1180px; padding-top: 2rem; padding-bottom: 2rem; }
       h1, h2, h3 { color: #1e1b4b; letter-spacing: -0.025em; }
       p, label, [data-testid="stMarkdownContainer"] { color: #172033; }
