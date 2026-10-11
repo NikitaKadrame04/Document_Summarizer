@@ -1,0 +1,8 @@
+# Verified together on Python 3.14; suitable for Python 3.11+.
+streamlit==1.65.0
+google-genai==1.75.0
+PyMuPDF==1.28.2
+python-docx==1.2.0
+python-dotenv==1.2.4
+reportlab==4.5.1
+pytest==9.1.1
