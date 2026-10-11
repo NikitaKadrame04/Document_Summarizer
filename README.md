@@ -1,6 +1,6 @@
 # SmartDoc AI — Intelligent Document Summarizer
 
-SmartDoc AI is an academic mini-project that extracts text from a document and uses Google Gemini to produce a summary, key points, keywords, and grounded answers to questions. It demonstrates document processing, prompt design, API integration, a small Streamlit interface, and offline unit testing.
+SmartDoc AI extracts text from documents and uses Google Gemini to produce summaries, key points, keywords, and document-grounded answers. It combines document processing, prompt design, API integration, a Streamlit interface, and offline unit tests.
 
 ## Problem statement
 
@@ -87,6 +87,8 @@ Short documents are supplied as a whole. For longer documents, the application s
 ├── report_generator.py
 ├── summarizer.py
 ├── requirements.txt
+├── .streamlit/
+│   └── config.toml
 ├── .env.example
 ├── .gitignore
 ├── README.md

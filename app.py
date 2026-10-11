@@ -45,7 +45,13 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-      :root { --smartdoc-indigo: #4f46e5; --smartdoc-ink: #172033; }
+      :root {
+        --smartdoc-indigo: #4f46e5;
+        --smartdoc-indigo-dark: #3730a3;
+        --smartdoc-ink: #172033;
+        --smartdoc-field: #ffffff;
+        --smartdoc-field-border: #cbd5e1;
+      }
       .stApp, [data-testid="stAppViewContainer"] { background: #fbfbfe !important; color: var(--smartdoc-ink) !important; }
       section[data-testid="stSidebar"],
       section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
@@ -83,7 +89,59 @@ st.markdown(
       div[data-testid="stDownloadButton"] > button:hover,
       div[data-testid="stFileUploader"] button:hover { background: #3730a3 !important; }
       div[data-testid="stButton"] > button:disabled { background: #94a3b8 !important; border-color: #94a3b8 !important; }
-      input, textarea, [data-baseweb="select"] { color: #172033 !important; }
+      /* Keep every form control light and readable, even when the OS/browser prefers dark mode. */
+      div[data-baseweb="select"] > div {
+        background: var(--smartdoc-field) !important;
+        color: var(--smartdoc-ink) !important;
+        border-color: var(--smartdoc-field-border) !important;
+      }
+      div[data-baseweb="select"] input,
+      div[data-baseweb="select"] svg { color: var(--smartdoc-ink) !important; fill: var(--smartdoc-ink) !important; }
+      div[data-testid="stTextInput"] [data-baseweb="input"] > div,
+      div[data-testid="stTextArea"] [data-baseweb="textarea"],
+      div[data-testid="stNumberInput"] [data-baseweb="input"] > div,
+      div[data-testid="stDateInput"] [data-baseweb="input"] > div,
+      div[data-testid="stTimeInput"] [data-baseweb="input"] > div,
+      div[data-testid="stChatInput"] [data-baseweb="textarea"] {
+        background: var(--smartdoc-field) !important;
+        border-color: var(--smartdoc-field-border) !important;
+      }
+      div[data-testid="stTextInput"] input,
+      div[data-testid="stTextArea"] textarea,
+      div[data-testid="stNumberInput"] input,
+      div[data-testid="stDateInput"] input,
+      div[data-testid="stTimeInput"] input,
+      div[data-testid="stChatInput"] textarea {
+        background: var(--smartdoc-field) !important;
+        color: var(--smartdoc-ink) !important;
+        border-color: var(--smartdoc-field-border) !important;
+      }
+      div[data-baseweb="select"] > div:focus-within,
+      [data-testid="stTextInput"] [data-baseweb="input"] > div:focus-within,
+      [data-testid="stTextArea"] [data-baseweb="textarea"]:focus-within,
+      [data-testid="stNumberInput"] [data-baseweb="input"] > div:focus-within,
+      [data-testid="stDateInput"] [data-baseweb="input"] > div:focus-within,
+      [data-testid="stTimeInput"] [data-baseweb="input"] > div:focus-within,
+      [data-testid="stChatInput"] [data-baseweb="textarea"]:focus-within,
+      div[data-testid="stTextInput"] input:focus,
+      div[data-testid="stTextArea"] textarea:focus,
+      div[data-testid="stNumberInput"] input:focus,
+      div[data-testid="stDateInput"] input:focus,
+      div[data-testid="stTimeInput"] input:focus,
+      div[data-testid="stChatInput"] textarea:focus {
+        border-color: var(--smartdoc-indigo) !important;
+        box-shadow: 0 0 0 1px var(--smartdoc-indigo) !important;
+      }
+      input::placeholder, textarea::placeholder { color: #64748b !important; opacity: 1 !important; }
+      [data-baseweb="popover"] [role="listbox"],
+      [data-baseweb="popover"] [role="option"] {
+        background: #ffffff !important; color: var(--smartdoc-ink) !important;
+      }
+      [data-baseweb="popover"] [role="option"]:hover,
+      [data-baseweb="popover"] [role="option"][aria-selected="true"] {
+        background: #eef2ff !important; color: #312e81 !important;
+      }
+      div[data-testid="stCheckbox"] input { accent-color: var(--smartdoc-indigo) !important; }
       div[data-testid="stAlert"] { color: #1e3a8a !important; }
       .smartdoc-subtitle { color: #64748b; font-size: 1.07rem; margin-top: -0.55rem; }
       .smartdoc-card { background: white; border: 1px solid #e7e7f0; padding: 1rem 1.15rem;
@@ -148,7 +206,7 @@ with st.sidebar:
         st.caption("Add GEMINI_API_KEY to a local .env file, then restart the app to enable AI features.")
     st.divider()
     st.subheader("About")
-    st.caption("An academic mini-project for document extraction, generative AI summarization, and lightweight document question answering.")
+    st.caption("A workspace for extracting documents, generating summaries, and asking document-grounded questions.")
     st.caption(f"Upload limit: {MAX_UPLOAD_BYTES // (1024 * 1024)} MB · Max AI input: {MAX_DOCUMENT_CHARS:,} characters")
     st.info("When you request an AI feature, the relevant document text is sent to Google Gemini. Avoid confidential documents unless you are authorized to share them.", icon="🔒")
 
@@ -362,6 +420,6 @@ elif not st.session_state.document_error:
     )
 
 st.markdown(
-    '<div class="smartdoc-footer">Academic mini-project demonstration. AI output can be inaccurate; verify important information against the original source. Document text is sent to Google Gemini only when an AI feature is requested.</div>',
+    '<div class="smartdoc-footer">AI-generated insights can be inaccurate; verify important information against the original source. Document text is sent to Google Gemini only when an AI feature is requested.</div>',
     unsafe_allow_html=True,
 )
